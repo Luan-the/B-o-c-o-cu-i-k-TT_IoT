@@ -1,0 +1,167 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: #e6f2ff;
+  color: #333;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 80px;
+  background: #2253cd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  position: relative;
+}
+
+.sidebar button {
+  background: none;
+  border: none;
+  margin: 20px 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.sidebar button img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.2s;
+}
+
+.sidebar button:hover img {
+  transform: scale(1.2);
+}
+
+.sidebar button[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  left: 70px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #fff;
+  color: #0066cc;
+  padding: 5px 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.sidebar .team-name {
+  position: absolute;
+  bottom: 5%;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  width: 100%;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+  position: relative;
+}
+
+.clock {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 18px;
+  color: #0066cc;
+  font-weight: bold;
+}
+
+.page {
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.hidden {
+  display: none;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #0066cc;
+}
+
+.info-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.info {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 20px;
+  flex: 1 1 200px;
+  min-width: 200px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.info button {
+  background: #0066cc;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.icon-small {
+  width: 40px;
+  height: 40px;
+}
+
+/* Các phần khác giữ nguyên */
+
+.charts {
+  width: 90%;
+  max-width: 1000px;
+  margin: 20px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.charts canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.page h1 {
+  margin-bottom: 20px;
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  color: #2c3e50;
+}
+
+/* Đổi màu nền trang Market cho sáng và dễ nhìn hơn */
+#market {
+  background-color: #f9f9fb;
+  padding-top: 20px;
+}
+

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Hệ thống nông nghiệp thông minh</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="module" src="script.js" defer></script>
+</head>
+<body>
+<div class="container">
+  <div class="sidebar">
+    <button onclick="showPage('livestock')" title="Vật nuôi"><img src="https://cdn-icons-png.flaticon.com/512/3397/3397536.png" alt="Vật nuôi"></button>
+    <button onclick="showPage('crops')" title="Cây trồng"><img src="https://cdn-icons-png.flaticon.com/512/883/883760.png" alt="Cây trồng"></button>
+    <button onclick="showPage('weather')" title="Thời tiết"><img src="https://cdn-icons-png.flaticon.com/512/13994/13994449.png" alt="Thời tiết"></button>
+    <button onclick="showPage('market')" title="Giá cả thị trường"><img src="https://cdn-icons-png.flaticon.com/512/2854/2854320.png" alt="Giá cả"></button>
+    <div class="team-name">Tấn Định - Thế Luân</div>
+  </div>
+
+  <div class="main">
+    <div id="clock" class="clock"></div>
+
+    <!-- Trang Vật nuôi -->
+    <div id="livestock" class="page">
+      <h1>🐔 Vật nuôi</h1>
+      <div class="info-boxes">
+        <div class="info">
+          <img src="https://cdn-icons-png.flaticon.com/512/4499/4499891.png" alt="Nhiệt độ chuồng" class="icon-small">
+          <p>Nhiệt độ chuồng: <span id="livestockTempValue">25</span>°C</p>
+          <input type="range" min="15" max="40" id="livestockTemp">
+        </div>
+        <div class="info">
+          <img src="https://cdn-icons-png.flaticon.com/512/2002/2002516.png" alt="Thân nhiệt" class="icon-small">
+          <p>Thân nhiệt: <input type="number" id="bodyTemp" min="30" max="45"> °C</p>
+        </div>
+        <div class="info">
+          <img src="https://cdn-icons-png.flaticon.com/512/2351/2351174.png" alt="Gà" class="icon-small">
+          <p>Số lượng gà: <input type="number" id="chickenCount" min="0"></p>
+        </div>
+        <div class="info">
+          <img src="	https://cdn-icons-png.flaticon.com/512/2194/2194807.png" alt="Lợn" class="icon-small">
+          <p>Số lượng lợn: <input type="number" id="pigCount" min="0"></p>
+        </div>
+        <div class="info">
+          <img src="https://cdn-icons-png.flaticon.com/512/8923/8923689.png" alt="Độ ẩm" class="icon-small">
+          <p>Độ ẩm: <input type="number" id="livestockHumidity" min="0" max="100">%</p>
+        </div>
+        <div class="info">
+          <img src="https://cdn-icons-png.flaticon.com/512/3768/3768550.png" alt="Thức ăn" class="icon-small">
+          <p>Thức ăn còn: <input type="number" id="foodLevel" min="0" max="100">%</p>
+        </div>
+        <div class="info">
+          <img src="https://cdn-icons-png.flaticon.com/512/4007/4007761.png" alt="Nước" class="icon-small">
+          <p>Nước còn: <input type="number" id="waterLevel" min="0" max="100">%</p>
+        </div>
+        <div class="info">
+          <img src="https://cdn-icons-png.flaticon.com/512/702/702814.png" alt="Đèn" class="icon-small">
+          <p>Đèn chuồng: <button id="toggleLight">Bật</button></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trang Cây trồng -->
+    <div id="crops" class="page hidden">
+      <h1>🌿 Cây trồng</h1>
+      <div class="info-boxes">
+        <div class="info">
+          <img src="https://cdn-icons-png.flaticon.com/512/5560/5560711.png" alt="Nhiệt độ nhà kính" class="icon-small">
+          <p>Nhiệt độ nhà kính: <span id="cropsTempValue">28</span>°C</p>
+          <input type="range" min="10" max="40" id="cropsTemp">
+        </div>
+        <div class="info">
+          <img src="https://cdn-icons-png.flaticon.com/512/8923/8923689.png" alt="Độ ẩm không khí" class="icon-small">
+          <p>Độ ẩm không khí: <input type="number" id="cropsHumidity" min="0" max="100">%</p>
+        </div>
+        <div class="info">
+          <img src="https://cdn-icons-png.flaticon.com/512/6634/6634686.png" alt="Độ ẩm đất" class="icon-small">
+          <p>Độ ẩm đất: <input type="number" id="soilMoisture" min="0" max="100">%</p>
+        </div>
+        <div class="info">
+          <img src="https://cdn-icons-png.flaticon.com/512/4497/4497397.png" alt="Vòi nước" class="icon-small">
+          <p>Vòi nước: <button id="toggleWater">Bật</button></p>
+        </div>
+        <div class="info">
+          <img src="https://cdn-icons-png.flaticon.com/512/4071/4071265.png" alt="Sâu bệnh" class="icon-small">
+          <p>Đánh giá sâu bệnh: <input type="text" id="pestStatus"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trang Thời tiết -->
+    <div id="weather" class="page hidden">
+      <h1>🌤️ Thời tiết</h1>
+      <div class="info-boxes">
+        <div class="info">
+          <img src="https://cdn-icons-png.flaticon.com/512/6218/6218295.png" alt="Nhiệt độ" class="icon-small">
+          <p>Nhiệt độ ngoài trời: <input type="number" id="weatherTemp" min="-10" max="50">°C</p>
+        </div>
+        <div class="info">
+          <img src="https://cdn-icons-png.flaticon.com/512/8923/8923689.png" alt="Độ ẩm" class="icon-small">
+          <p>Độ ẩm: <input type="number" id="weatherHumidity" min="0" max="100">%</p>
+        </div>
+        <div class="info">
+          <img src="https://cdn-icons-png.flaticon.com/512/6628/6628414.png" alt="Gió" class="icon-small">
+          <p>Tốc độ gió: <input type="number" id="windSpeed" min="0" max="200"> km/h</p>
+        </div>
+        <div class="info">
+          <img src="https://cdn-icons-png.flaticon.com/512/2864/2864403.png" alt="Mưa" class="icon-small">
+          <p>Khả năng mưa: <input type="number" id="rainChance" min="0" max="100">%</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trang Giá cả thị trường -->
+    <div id="market" class="page hidden">
+      <h1>📈 Giá cả thị trường</h1>
+      <div class="charts">
+        <canvas id="combinedChart"></canvas> 
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
